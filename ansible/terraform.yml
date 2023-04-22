@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  vars:
+    state: present
+    resource_group_name: "tfrg"
+    storage_account_name: "rishtfstateaks"
+    container_name: "tfstatefiles"
+    key: "terraform.tfstate"
+    app_env: dev
+    project_path: "../terraform/az-vm/"
+  tasks:
+    - name: Run terraform scripts
+      terraform:
+        project_path: "{{ project_path }}"
+        state: "{{ state }}"
+        backend_config:
+          resource_group_name: "{{ resource_group_name }}"
+          storage_account_name: "{{ storage_account_name }}"
+          container_name: "{{ container_name }}"
+          key: "{{ key }}"
+        variables_file: "{{app_env}}.tfvars"
+        workspace: "{{app_env}}"
