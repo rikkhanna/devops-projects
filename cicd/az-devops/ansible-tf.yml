@@ -1,6 +1,6 @@
 trigger:
 - master
-
+# dummy commit
 pool:
   name: centos-vm
 
