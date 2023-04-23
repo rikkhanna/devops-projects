@@ -6,8 +6,8 @@ pool:
 
 steps:
 - bash: |
-   terraform workspace new dev
    terraform init
+   terraform workspace new dev
    ansible-playbook terraform.yml
   workingDirectory: ansible
   displayName: 'Bash Script'
