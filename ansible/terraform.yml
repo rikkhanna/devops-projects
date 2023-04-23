@@ -9,7 +9,7 @@
     app_env: dev
     project_path: "../terraform/az-vm/"
   tasks:
-    - name: 
+    - name: Initialize Terraform backend
       shell: |
         terraform init -backend-config="resource_group_name={{ resource_group_name }}" -backend-config="storage_account_name={{ storage_account_name }}" -backend-config="tfstatefiles={{ tfstatefiles }}"
     - name: Run terraform scripts
