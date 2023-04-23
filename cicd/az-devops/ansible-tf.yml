@@ -7,7 +7,7 @@ pool:
 steps:
 - bash: |
    ansible-playbook terraform.yml
-  workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
+  workingDirectory: $(Build.SourcesDirectory)/ansible
   displayName: 'Bash Script'
 
   #  terraform init
