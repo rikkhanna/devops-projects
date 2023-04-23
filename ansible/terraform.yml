@@ -11,7 +11,7 @@
   tasks:
     - name: Initialize Terraform backend
       shell: |
-        terraform init -backend-config="resource_group_name={{ resource_group_name }}" -backend-config="storage_account_name={{ storage_account_name }}" -backend-config="tfstatefiles={{ tfstatefiles }}"
+        terraform init -backend-config="resource_group_name={{ resource_group_name }}" -backend-config="storage_account_name={{ storage_account_name }}" -backend-config="container_name={{ container_name }}"
     - name: Run terraform scripts
       terraform:
         project_path: "{{ project_path }}"
