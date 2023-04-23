@@ -9,10 +9,9 @@
     app_env: dev
     project_path: "../terraform/az-vm/"
   tasks:
-    # - name: 
-    #   shell: |
-    #     echo "Hello, world!"
-    #     echo "The current directory is $(pwd)"
+    - name: 
+      shell: |
+        terraform init -backend-config="resource_group_name={{ resource_group_name }}" -backend-config="storage_account_name={{ storage_account_name }}" -backend-config="tfstatefiles={{ tfstatefiles }}"
     - name: Run terraform scripts
       terraform:
         project_path: "{{ project_path }}"
@@ -23,4 +22,4 @@
           container_name: "{{ container_name }}"
           key: "{{ key }}"
         variables_file: "{{app_env}}.tfvars"
-        workspace: "{{app_env}}"
+        # workspace: "{{app_env}}"
