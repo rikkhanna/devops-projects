@@ -22,5 +22,5 @@
           storage_account_name: "{{ storage_account_name }}"
           container_name: "{{ container_name }}"
           key: "{{ key }}"
-        variables_file: "{{ project_path }}{{app_env}}.tfvars"
+        variables_file: "{{app_env}}.auto.tfvars"
         # workspace: "{{app_env}}"
