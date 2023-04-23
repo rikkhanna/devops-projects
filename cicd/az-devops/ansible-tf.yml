@@ -9,5 +9,5 @@ steps:
    terraform init
    terraform workspace new dev
    ansible-playbook terraform.yml
-  workingDirectory: ansible
+  workingDirectory: "../terraform/az-vm/"
   displayName: 'Bash Script'
