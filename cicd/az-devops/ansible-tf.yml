@@ -1,13 +1,14 @@
 trigger:
 - master
-# dummy commit
+
 pool:
   name: centos-vm
 
 steps:
 - bash: |
-   terraform init
-   terraform workspace new dev
    ansible-playbook terraform.yml
   workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
   displayName: 'Bash Script'
+
+  #  terraform init
+  #  terraform workspace new dev

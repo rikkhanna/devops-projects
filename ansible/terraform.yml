@@ -9,6 +9,10 @@
     app_env: dev
     project_path: "../terraform/az-vm/"
   tasks:
+    # - name: 
+    #   shell: |
+    #     echo "Hello, world!"
+    #     echo "The current directory is $(pwd)"
     - name: Run terraform scripts
       terraform:
         project_path: "{{ project_path }}"
