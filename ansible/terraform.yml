@@ -20,4 +20,3 @@
           key: "{{ key }}"
         variables_file: "{{app_env}}.tfvars"
         workspace: "{{app_env}}"
-        
