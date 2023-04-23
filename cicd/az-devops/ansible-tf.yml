@@ -1,0 +1,13 @@
+trigger:
+- master
+
+pool:
+  name: centos-vm
+
+steps:
+- bash: |
+   terraform workspace new dev
+   terraform init
+   ansible-playbook terraform.yml
+  workingDirectory: ansible
+  displayName: 'Bash Script'

@@ -3,7 +3,7 @@
   vars:
     state: present
     resource_group_name: "tfrg"
-    storage_account_name: "rishtfstateaks"
+    storage_account_name: "rishtfstate"
     container_name: "tfstatefiles"
     key: "terraform.tfstate"
     app_env: dev
@@ -20,3 +20,4 @@
           key: "{{ key }}"
         variables_file: "{{app_env}}.tfvars"
         workspace: "{{app_env}}"
+        
