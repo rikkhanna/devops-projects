@@ -39,6 +39,14 @@
       shell: |
         cd {{ project_path }}
         terraform init -backend-config="dev.tfbackend"
+    - name: Run terraform validate
+      shell: |
+        cd {{ project_path }}
+        terraform validate
+    - name: Run terraform plan
+      shell: |
+        cd {{ project_path }}
+        terraform plan -var-file="{{ app_env }}.tfvars"
     - name: Run terraform scripts
       shell: |
         cd {{ project_path }}
