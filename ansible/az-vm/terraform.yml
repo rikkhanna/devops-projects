@@ -11,8 +11,17 @@
     ssh_key_path: "/home/vagrant/az-vm-keys/.ssh"
     ssh_key_name: "az-key"
     group_name: "adminuser"
-    owner_name: "adminuser"
+    user_name: "adminuser"
   tasks:
+    - name: Create new group
+      group:
+        name: "{{ group_name }}"
+        state: present
+    - name: Create new user
+      user:
+        name: "{{ user_name }}"
+        group: "{{ group_name }}"
+        state: present
     - name: Create SSH key directory
       file:
         path: "{{ ssh_key_path }}"
@@ -22,8 +31,9 @@
       community.crypto.openssh_keypair:
         path: "{{ ssh_key_path }}/{{ ssh_key_name }}"
         group: "{{ group_name }}"
-        owner: "{{ owner_name }}"
+        owner: "{{ user_name }}"
         state: present
+        mode: '0600'
     - name: Initialize Terraform backend
       shell: |
         cd {{ project_path }}
