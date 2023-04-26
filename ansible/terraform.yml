@@ -12,7 +12,7 @@
     - name: Initialize Terraform backend
       shell: |
         cd {{ project_path }}
-        terraform init -backend-config="resource_group_name={{ resource_group_name }}" -backend-config="storage_account_name={{ storage_account_name }}" -backend-config="container_name={{ container_name }}" -backend-config="key={{ key }}"
+        terraform init -backend-config="dev.tfbackend"
     - name: Run terraform scripts
       shell: |
         cd {{ project_path }}

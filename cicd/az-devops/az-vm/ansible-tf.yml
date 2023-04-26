@@ -1,5 +1,10 @@
 trigger:
-- master
+  branches:
+    include: ['*']
+  paths:
+    include:
+      - $(Build.SourcesDirectory)/terraform/az-vm/*
+      - $(Build.SourcesDirectory)/cicd/az-devops/az-vm/*
 
 pool:
   name: centos-vm

@@ -14,7 +14,7 @@ terraform {
     resource_group_name  = "tfrg"
     storage_account_name = "rishtfstate"
     container_name       = "tfstatefiles"
-    key                  = "terraform.tfstate"
+    # key                  = "terraform.tfstate"
   }
 }
 
