@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  become: yes
   vars:
     state: present
     resource_group_name: "tfrg"
