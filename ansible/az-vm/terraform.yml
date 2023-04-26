@@ -38,6 +38,7 @@
     - name: Initialize Terraform backend
       shell: |
         cd {{ project_path }}
+        ls -l
         terraform init -backend-config="dev.tfbackend"
     - name: Run terraform validate
       shell: |
