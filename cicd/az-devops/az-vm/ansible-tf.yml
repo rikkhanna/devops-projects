@@ -3,8 +3,9 @@ trigger:
     include: ['*']
   paths:
     include:
-      - $(Build.SourcesDirectory)/terraform/az-vm/*
+      - 'terraform/az-vm/*'
       - 'cicd/az-devops/az-vm/*'
+      - 'ansible/az-vm/*'
 
 pool:
   name: centos-vm
@@ -12,7 +13,7 @@ pool:
 steps:
 - bash: |
    ansible-playbook terraform.yml
-  workingDirectory: $(Build.SourcesDirectory)/ansible
+  workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
   displayName: 'Bash Script'
 
   #  terraform init

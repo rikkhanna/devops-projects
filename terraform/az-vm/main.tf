@@ -8,7 +8,7 @@ resource "azurerm_linux_virtual_machine" "demo-vm" {
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
   size                  = "Standard_B4ms"
-  admin_username        = "adminuser"
+  admin_username        = var.admin_username
   disable_password_auth = true
   ssh_key {
     key_data = file("${var.ssh_key_path}")
