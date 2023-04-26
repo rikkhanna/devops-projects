@@ -1,3 +1,5 @@
-resource_group_name="myfirstrg"
-rg_location="EAST US"
-linux_vm_name = "dev-linux-vm"
+prefix         = "devops-projects"
+location       = "EAST US"
+ssh_key_path   = "/home/vagrant/az-vm-keys/.ssh/az-key.pub"
+admin_username = "adminuser"
+vm_size        = "Standard_B4ms"
