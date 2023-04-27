@@ -12,7 +12,7 @@ pool:
 
 steps:
 - bash: |
-   ansible-playbook terraform.yml
+   ansible-playbook terraform.yml -v
   workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
   displayName: 'Bash Script'
 
