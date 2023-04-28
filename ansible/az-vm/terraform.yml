@@ -39,7 +39,7 @@
       shell: |
         cd {{ project_path }}
         ls -l
-        terraform init -backend-config="dev.tfbackend"
+        terraform init -backend-config="dev.tfbackend" --reconfigure
     - name: Run terraform validate
       shell: |
         cd {{ project_path }}
