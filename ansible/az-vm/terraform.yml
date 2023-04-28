@@ -35,13 +35,6 @@
         owner: "{{ user_name }}"
         state: present
         mode: '0600'
-    - name: Create Azure SP
-      shell: |
-        azsp_output=$(az ad sp create-for-rbac --name "devops-projects-sp" --role contributor --scopes /subscriptions/$ARM_SUBSCRIPTION_ID)
-        ARM_CLIENT_ID=$( echo $azsp_output | jq '.appId' )
-        ARM_CLIENT_SECRET=$( echo $azsp_output | jq '.password' )
-        ARM_TENANT_ID = $( echo $azsp_output | jq '.tenant' )
-        az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
     - name: Initialize Terraform backend
       shell: |
         cd {{ project_path }}
