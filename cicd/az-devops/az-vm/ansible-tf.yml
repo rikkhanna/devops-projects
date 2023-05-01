@@ -20,16 +20,27 @@ steps:
   #  terraform workspace new dev
 # Azure CLI v2
 # Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'azspn' 
+#     scriptType: bash 
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID; ansible-playbook terraform.yml -v' 
+#     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
+#     workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
+#     displayName: 'AZ SPN Login & Ansible execute'
+
+    #useGlobalConfig: false # boolean. Use global Azure CLI configuration. Default: false.
+    #workingDirectory: # string. Alias: cwd. Working Directory. 
+    #failOnStandardError: false # boolean. Fail on Standard Error. Default: false.
+    #powerShellIgnoreLASTEXITCODE: false # boolean. Optional. Use when scriptType = ps || scriptType = pscore. Ignore $LASTEXITCODE. Default: false.
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'azspn' 
     scriptType: bash 
     scriptLocation: 'inlineScript'
-    inlineScript: 'az logout; az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID; ansible-playbook terraform.yml -v' 
+    inlineScript: 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID; terraform init -backend-config="dev.tfbackend" --reconfigure' 
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
-    workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
-    displayName: 'AZ SPN Login & Ansible execute'
-    #useGlobalConfig: false # boolean. Use global Azure CLI configuration. Default: false.
-    #workingDirectory: # string. Alias: cwd. Working Directory. 
-    #failOnStandardError: false # boolean. Fail on Standard Error. Default: false.
-    #powerShellIgnoreLASTEXITCODE: false # boolean. Optional. Use when scriptType = ps || scriptType = pscore. Ignore $LASTEXITCODE. Default: false.
+    workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
+    displayName: 'Terraform Init'
