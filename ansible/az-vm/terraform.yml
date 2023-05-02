@@ -11,18 +11,18 @@
     project_path: "../../terraform/az-vm/"
     ssh_key_path: "/home/vagrant/az-vm-keys/.ssh"
     ssh_key_name: "az-key"
-    group_name: "adminuser"
-    user_name: "adminuser"
+    group_name: "vagrant"
+    user_name: "vagrant"
   tasks:
-    - name: Create new group
-      group:
-        name: "{{ group_name }}"
-        state: present
-    - name: Create new user
-      user:
-        name: "{{ user_name }}"
-        group: "{{ group_name }}"
-        state: present
+    # - name: Create new group
+    #   group:
+    #     name: "{{ group_name }}"
+    #     state: present
+    # - name: Create new user
+    #   user:
+    #     name: "{{ user_name }}"
+    #     group: "{{ group_name }}"
+    #     state: present
     - name: Create SSH key directory
       file:
         path: "{{ ssh_key_path }}"
