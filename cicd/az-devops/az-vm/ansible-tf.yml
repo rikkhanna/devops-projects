@@ -29,7 +29,7 @@ steps:
     azureSubscription: 'azspn' 
     scriptType: bash 
     scriptLocation: 'inlineScript'
-    inlineScript: 'ansible-playbook terraform.yml; cp $(ssh_key_path) $(Build.SourcesDirectory)/terraform/az-vm; sudo chown vagrant:vagrant $(Build.SourcesDirectory)/terraform/az-vm/*.pub' 
+    inlineScript: 'ansible-playbook terraform.yml; sudo cp $(ssh_key_path) $(Build.SourcesDirectory)/terraform/az-vm; sudo chown vagrant:vagrant $(Build.SourcesDirectory)/terraform/az-vm/*.pub' 
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
     workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
     displayName: 'Ansible Playbook'
