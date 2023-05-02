@@ -8,7 +8,7 @@ variable "location" {
 }
 variable "ssh_key_path" {
   type    = string
-  default = "/home/vagrant/az-vm-keys/.ssh/az-key.pub"
+  default = "az-key.pub"
 }
 variable "admin_username" {
   type    = string
