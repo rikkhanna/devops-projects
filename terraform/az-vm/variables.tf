@@ -20,13 +20,17 @@ variable "vm_size" {
 }
 variable "client_id" {
   type = string
+  default = "xxxxx"
 }
 variable "client_secret" {
   type = string
+  default = "xxxxxx"
 }
 variable "tenant_id" {
   type = string
+  default = "xxxxxx"
 }
 variable "subscription_id" {
   type = string
+  default = "xxxxxx"
 }
