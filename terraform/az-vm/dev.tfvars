@@ -1,5 +1,5 @@
 prefix         = "devops-projects"
 location       = "EAST US"
-ssh_key_path   = "/home/vagrant/az-vm-keys/.ssh/az-key.pub"
+ssh_key_path   = "az-key.pub"
 admin_username = "adminuser"
 vm_size        = "Standard_B4ms"
