@@ -52,7 +52,7 @@ steps:
     azureSubscription: 'azspn' 
     scriptType: bash 
     scriptLocation: 'inlineScript'
-    inlineScript: 'terraform validate; terraform plan -var-file=$(app_env).tfvars -var="ssh_key_path=$(Build.SourcesDirectory)/terraform/az-vm/*.pub"' 
+    inlineScript: 'terraform validate; terraform plan -var-file=$(app_env).tfvars -var="ssh_key_path=az-key.pub"' 
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
     workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
     displayName: 'Terraform Validate & Plan'
