@@ -12,6 +12,7 @@ pool:
 variables:
   app_env: dev
   ssh_key_path: "/home/vagrant/az-vm-keys/.ssh/*.pub"
+  tf_action: destroy
 
 steps:
 # - bash: |
@@ -61,10 +62,10 @@ steps:
     azureSubscription: 'azspn' 
     scriptType: bash 
     scriptLocation: 'inlineScript'
-    inlineScript: 'terraform apply -auto-approve -var-file=$(app_env).tfvars' 
+    inlineScript: 'terraform $(tf_action) -auto-approve -var-file=$(app_env).tfvars' 
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
     workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
-    displayName: 'Terraform Apply'
+    displayName: 'Terraform $(tf_action)'
     #     - name: Initialize Terraform backend
     #   shell: |
     #     cd {{ project_path }}
