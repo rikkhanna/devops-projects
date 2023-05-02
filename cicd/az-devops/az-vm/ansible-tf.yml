@@ -9,6 +9,8 @@ trigger:
 
 pool:
   name: centos-vm
+variables:
+  app_env: dev
 
 steps:
 # - bash: |
@@ -44,3 +46,39 @@ steps:
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
     workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
     displayName: 'Terraform Init'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azspn' 
+    scriptType: bash 
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform validate; terraform plan -var-file=$(app_env).tfvars' 
+    addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
+    workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
+    displayName: 'Terraform Validate & Plan'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azspn' 
+    scriptType: bash 
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform apply -auto-approve -var-file=$(app_env).tfvars' 
+    addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
+    workingDirectory: $(Build.SourcesDirectory)/terraform/az-vm
+    displayName: 'Terraform Apply'
+    #     - name: Initialize Terraform backend
+    #   shell: |
+    #     cd {{ project_path }}
+    #     az --version
+    #     az logout; az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+    #     terraform init -backend-config="dev.tfbackend" --reconfigure
+    # - name: Run terraform validate
+    #   shell: |
+    #     cd {{ project_path }}
+    #     
+    # - name: Run terraform plan
+    #   shell: |
+    #     cd {{ project_path }}
+    #     "
+    # - name: Run terraform scripts
+    #   shell: |
+    #     cd {{ project_path }}
+    #     "
