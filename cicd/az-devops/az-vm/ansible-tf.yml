@@ -23,15 +23,15 @@ steps:
 # Azure CLI v2
 # Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
 
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'azspn' 
-#     scriptType: bash 
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID; ansible-playbook terraform.yml -v' 
-#     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
-#     workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
-#     displayName: 'AZ SPN Login & Ansible execute'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azspn' 
+    scriptType: bash 
+    scriptLocation: 'inlineScript'
+    inlineScript: 'ansible-playbook terraform.yml -v' 
+    addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
+    workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
+    displayName: 'Ansible Playbook'
 
     #useGlobalConfig: false # boolean. Use global Azure CLI configuration. Default: false.
     #workingDirectory: # string. Alias: cwd. Working Directory. 
