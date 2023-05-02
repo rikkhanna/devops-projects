@@ -11,6 +11,7 @@ pool:
   name: centos-vm
 variables:
   app_env: dev
+  ssh_key_path: "/home/vagrant/az-vm-keys/.ssh/*.pub"
 
 steps:
 # - bash: |
@@ -28,7 +29,7 @@ steps:
     azureSubscription: 'azspn' 
     scriptType: bash 
     scriptLocation: 'inlineScript'
-    inlineScript: 'ansible-playbook terraform.yml -v' 
+    inlineScript: 'ansible-playbook terraform.yml; cp $(ssh_key_path) $(Build.SourcesDirectory)/terraform/az-vm; sudo chown vagrant:vagrant *.pub' 
     addSpnToEnvironment: true # boolean. Access service principal details in script. Default: false.
     workingDirectory: $(Build.SourcesDirectory)/ansible/az-vm
     displayName: 'Ansible Playbook'
